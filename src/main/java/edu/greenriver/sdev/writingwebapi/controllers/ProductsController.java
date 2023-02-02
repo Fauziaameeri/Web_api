@@ -1,0 +1,42 @@
+package edu.greenriver.sdev.writingwebapi.controllers;
+
+import edu.greenriver.sdev.writingwebapi.exceptions.GeneralException;
+import edu.greenriver.sdev.writingwebapi.models.Product;
+import edu.greenriver.sdev.writingwebapi.services.ProductService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RequestMapping("/products")
+@RestController
+public class ProductsController {
+    private final ProductService productService;
+    public ProductsController(ProductService productService) {
+        this.productService = productService;}
+
+    @GetMapping(value = "/all")
+    public List<Product> getProducts(){return productService.getAllProducts();}
+
+    @GetMapping(value = "/seedData")
+    public String addDemo(){
+        productService.addDemoProjects();
+        return "Success";
+    }
+
+    @GetMapping(value = "/{id}")
+    public Product getProducts(@PathVariable("id") Integer id) throws GeneralException {
+        return productService.findProduct(id);
+    }
+
+
+
+
+
+
+
+
+    @DeleteMapping("/{id}")
+    public Product deleteProduct(@PathVariable("id") Integer id) throws GeneralException {
+        return productService.deleteProduct(id);
+    }
+}
