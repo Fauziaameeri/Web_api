@@ -22,7 +22,7 @@ public class CategoryService {
         categories.add(category);
         return category;
     }
-
+     //I used this idea from what you thought in the class
     public Category findCategory(int id) throws GeneralException {
         Category temp = categories.stream()
                 .filter(category -> id == category

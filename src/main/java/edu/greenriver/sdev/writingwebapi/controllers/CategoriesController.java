@@ -29,12 +29,16 @@ public class CategoriesController {
         return categoryService.findCategory(id);
     }
 
+    @PostMapping("/new")
+    public Category saveCategory(@RequestBody Category category){
+        return categoryService.addCategory(category);
+    }
 
-
-
-
-
-
+    @PutMapping("/{id}")
+    public Category updateCategory(@PathVariable Integer id, @RequestBody Category category)
+        throws GeneralException{
+        return categoryService.updateCategory(id, category);
+    }
     @DeleteMapping("/{id}")
     public Category addDemoCategory(@PathVariable("id") Integer id) throws GeneralException {
         return categoryService.deleteCategory(id);

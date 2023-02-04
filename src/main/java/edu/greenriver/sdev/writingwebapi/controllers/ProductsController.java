@@ -27,14 +27,15 @@ public class ProductsController {
     public Product getProducts(@PathVariable("id") Integer id) throws GeneralException {
         return productService.findProduct(id);
     }
-
-
-
-
-
-
-
-
+    @PostMapping("/new")
+    public Product saveProduct(@RequestBody Product product){
+        return productService.addProduct(product);
+    }
+    @PutMapping("/{id}")
+    public Product updateProduct(@PathVariable Integer id, @RequestBody Product product)
+        throws GeneralException{
+        return productService.updateProduct(id, product);
+    }
     @DeleteMapping("/{id}")
     public Product deleteProduct(@PathVariable("id") Integer id) throws GeneralException {
         return productService.deleteProduct(id);

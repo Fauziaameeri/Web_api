@@ -22,7 +22,7 @@ public class ProductService {
         products.add(product);
         return product;
     }
-
+    //I used this idea from what you thought in the class
     public Product findProduct(int id) throws GeneralException {
         Product temp = products.stream()
                 .filter(product -> id == product.getId())
@@ -42,12 +42,20 @@ public class ProductService {
         Product saved = findProduct(id);
         products.remove(saved);
 
-
-
-
-
-
-
+        if(product.getId() !=0){
+            saved.setId(product.getId());
+        }
+        if(product.getPrice()!=0){
+            saved.setPrice(product.getPrice());
+        }
+        if(product.getName()!=null){
+            saved.setName(product.getName());
+        }
+        if(product.getDescription()!=null){
+            saved.setDescription(product.getDescription());
+        }
+        products.add(saved);
+        return saved;
 
     }
 }
